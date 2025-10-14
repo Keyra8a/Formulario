@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Escribe aquí tu nombre" 
+               onkeypress="return onlyLetters(event)" required>
+        <br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" placeholder="Escribe aquí tu apellido" 
+               onkeypress="return onlyLetters(event)" required>
+        <br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" placeholder="Escribe aquí tu teléfono" 
+               onkeypress="return onlyNumbers(event)" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Escribe aquí tu email" 
+               onkeypress="return emailKeys(event)" required>
+        <br><br>
+
+        <label for="biografia">Biografía:</label>
+        <textarea id="biografia" placeholder="Escribe tu biografía" 
+                  onkeypress="return bioKeys(event)" required></textarea>
+        <br><br>
+
+        <button onclick="validarFormulario()">Guardar cambios</button>
+    </div>
+</body>
+</html>
