@@ -42,43 +42,38 @@ function bioKeys(event) {
     return true;
 }
 
+// --- Validación completa al enviar ---
 function validarFormulario() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const biografia = document.getElementById("biografia").value.trim();
+    const campos = ["nombre", "apellido", "telefono", "email", "biografia"];
+    let valido = true;
 
-    if (!nombre || !apellido || !telefono || !email || !biografia) {
+    campos.forEach(id => {
+        const campo = document.getElementById(id);
+        campo.classList.remove("error"); 
+
+        if (campo.value.trim() === "") {
+            campo.classList.add("error"); 
+            valido = false;
+        }
+    });
+
+    if (!valido) {
         alert("Todos los campos son obligatorios");
-        return false;
-    }
-
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
-        alert("El nombre solo debe contener letras y espacios");
-        return false;
-    }
-
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(apellido)) {
-        alert("El apellido solo debe contener letras y espacios");
-        return false;
-    }
-
-    if (!/^\d+$/.test(telefono)) {
-        alert("El teléfono solo debe contener números");
-        return false;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert("Ingresa un email válido");
-        return false;
-    }
-
-    if (biografia.length < 10) {
-        alert("La biografía debe tener al menos 10 caracteres");
         return false;
     }
 
     alert("Formulario enviado correctamente!");
     return true;
 }
+
+// --- Quitar borde rojo cuando el usuario empieza a escribir ---
+document.addEventListener("DOMContentLoaded", () => {
+    const campos = document.querySelectorAll("input, textarea");
+    campos.forEach(campo => {
+        campo.addEventListener("input", () => {
+            if (campo.value.trim() !== "") {
+                campo.classList.remove("error");
+            }
+        });
+    });
+});
